@@ -98,6 +98,9 @@ func getowners(filePath string) ([]string, error) {
 		if strings.HasPrefix(line, ";") {
 			continue
 		}
+		if strings.HasPrefix(line, "#") {
+			continue
+		}
 		if strings.HasPrefix(line, "[") {
 			continue
 		}
@@ -105,6 +108,7 @@ func getowners(filePath string) ([]string, error) {
 			continue
 		}
 		line = strings.TrimLeft(line, "*")
+		line = strings.TrimLeft(line, "@")
 		people = append(people, line)
 	}
 
